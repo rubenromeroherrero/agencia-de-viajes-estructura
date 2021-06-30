@@ -9,6 +9,13 @@ import { ViajesListComponent } from './viajes-list/viajes-list.component';
 import { ViajesTableListComponent } from './viajes-list/viajes-table-list/viajes-table-list.component';
 import { TipoDeViajePipe } from './tipo-de-viaje.pipe';
 import { ReactiveFormsModule } from '@angular/forms';
+// Importaciones de Material
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 
 @NgModule({
@@ -23,7 +30,13 @@ import { ReactiveFormsModule } from '@angular/forms';
   imports: [
     CommonModule,
     ViajesRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatSelectModule,
+    MatButtonModule,
+    MatCardModule,
+    FlexLayoutModule
   ]
 })
 export class ViajesModule { }

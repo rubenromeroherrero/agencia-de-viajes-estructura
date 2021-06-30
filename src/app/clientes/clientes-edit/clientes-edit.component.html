@@ -1,5 +1,60 @@
+<mat-card class="filter-card">
+    <mat-card-header>
+        <mat-card-title>Edicion de Clientes</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+        <form [formGroup]="clientesForm" (ngSubmit)="guardarClick(clientesForm)" [ngClass]="{submited: submitted}">
+            <div fxLayout="row wrap" fxLayoutGap="20px">
+                <mat-form-field appearance="legacy" fxFlex="1 1 300px">
+                    <mat-label>Nombre:</mat-label>
+                    <input matInput placeholder="Introduce el nombre" formControlName="nombre">
+                </mat-form-field>
+                <mat-form-field appearance="legacy" fxFlex="1 1 300px">
+                    <mat-label>Apellidos:</mat-label>
+                    <input matInput placeholder="Introduce apellidos" formControlName="apellidos">
+                </mat-form-field>
+                <mat-form-field appearance="legacy" fxFlex="1 1 300px">
+                    <mat-label>Email:</mat-label>
+                    <input matInput placeholder="Introduce apellidos" type="email" formControlName="email">
+                </mat-form-field>
+                <mat-form-field appearance="legacy" fxFlex="1 1 300px">
+                    <mat-label>Dni:</mat-label>
+                    <input matInput placeholder="Introduce apellidos" formControlName="dni">
+                </mat-form-field>
+                <mat-form-field appearance="legacy" fxFlex="1 1 300px">
+                    <mat-label>Teléfono:</mat-label>
+                    <input matInput placeholder="Introduce apellidos" type="tel" formControlName="telefono">
+                </mat-form-field>
+                <mat-form-field appearance="legacy">
+                    <mat-label>Estado civil:</mat-label>
+                    <mat-select formControlName="estadoCivilId">
+                        <mat-option [value]=""></mat-option>
+                        <mat-option *ngFor="let item of estadosCiviles" [value]="item.id">{{item.descripcion}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <mat-form-field appearance="legacy" fxFlex="1 1 300px">
+                    <mat-label>Fecha de nacimiento:</mat-label>
+                    <input matInput [matDatepicker]="picker" formControlName="fechaNacimiento">
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                    <!-- <input matInput placeholder="Introduce apellidos" type="date" formControlName="fechaNacimiento"> -->
+                </mat-form-field>
+                <mat-form-field appearance="legacy" fxFlex="1 1 300px">
+                    <mat-label>Dirección:</mat-label>
+                    <input matInput placeholder="Introduce apellidos" formControlName="direccion">
+                </mat-form-field>
+            </div>
+            <div class="row-buttons">
+                <button mat-stroked-button color="primary" type="submit">Guardar</button>
+                <button mat-stroked-button color="accent" type="button" (click)="resetForm()">Resetear</button>
+            </div>
+        </form>
+    </mat-card-content>
+
+</mat-card>
 <!-- formGroup, es una directiva que requiere ser instalada como ReactiveForm en app routing module -->
-<form [formGroup]="clientesForm" (ngSubmit)="guardarClick(clientesForm)" [ngClass]="{submited: submitted}">
+<!-- <form [formGroup]="clientesForm" (ngSubmit)="guardarClick(clientesForm)" [ngClass]="{submited: submitted}">
     <fieldset>
         <legend>
             <h1> Edicion de Clientes</h1>
@@ -29,7 +84,6 @@
                 <label for="">Estado Civil: </label>
                 <select id="" formControlName="estadoCivilId">
                     <option value=""></option>
-                    <!-- <option [ngValue]="99"></option> -->
                     <option *ngFor="let item of estadosCiviles" [ngValue]="item.id">{{item.descripcion}}</option>
                 </select>
             </div>
@@ -48,4 +102,4 @@
         <button class="btn primary" type="submit">Guardar</button>
         <button class="btn " type="button" (click)="resetForm()">Resetear</button>
     </div>
-</form>
+</form> -->
