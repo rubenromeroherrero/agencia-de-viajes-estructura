@@ -7,6 +7,7 @@ import { Viaje } from '../models/viaje';
 import { IdValor } from '../../models/id-valor';
 import { ViajesModelService } from '../services/viajes-model.service';
 import { TipoDeViajePipe } from '../tipo-de-viaje.pipe';
+import { ToastMessagesService } from 'src/app/core/services/toast-messages.service';
 
 @Component({
   selector: 'app-viajes-edit',
@@ -24,7 +25,8 @@ export class ViajesEditComponent implements OnInit {
 
   viajesForm: FormGroup;
 
-  constructor(fb: FormBuilder, private viajesModel: ViajesModelService, 
+  constructor(fb: FormBuilder, private viajesModel: ViajesModelService,
+    private toastMessages: ToastMessagesService,
     private router: Router,
     route: ActivatedRoute) {
 
@@ -94,6 +96,8 @@ export class ViajesEditComponent implements OnInit {
       }
 
       this.viajesModel.guardar(viaje).subscribe(x => {
+        // Servicio para mostrar mensajes en pantalla / alert
+        this.toastMessages.showSuccess('Viaje guardado');
         this.router.navigate(['viajes']);
       })
 
