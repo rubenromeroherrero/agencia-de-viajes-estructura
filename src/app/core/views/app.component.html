@@ -1,0 +1,13 @@
+<!-- si es true mostrará el header -->
+<app-header *ngIf="isUserLogged()" (cerrarSesion)="cerrarSesion()"></app-header>
+
+<!-- lo empleamos cuando se hagan peticiones al server, y haya timepo de espera -->
+<app-loader *ngIf="loading"></app-loader>
+
+<!-- <app-header *ngIf="!elUsuarioEstaEnLogin" (cerrarSesion)="cerrarSesion()"></app-header> -->
+<div class="main">
+    <router-outlet></router-outlet>
+</div>
+
+
+<footer></footer>
