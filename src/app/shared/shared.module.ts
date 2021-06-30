@@ -12,6 +12,7 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatTableModule } from '@angular/material/table';
 import { MatIconModule } from '@angular/material/icon';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 
 @NgModule({
@@ -28,7 +29,8 @@ import { MatIconModule } from '@angular/material/icon';
     FlexLayoutModule,
     MatNativeDateModule,
     MatDatepickerModule,
-    MatTableModule
+    MatTableModule,
+    MatPaginatorModule
   ], exports: [
     CommonModule,
     ReactiveFormsModule,
@@ -41,7 +43,8 @@ import { MatIconModule } from '@angular/material/icon';
     FlexLayoutModule,
     MatNativeDateModule,
     MatDatepickerModule,
-    MatTableModule
+    MatTableModule,
+    MatPaginatorModule
   ]
 })
 export class SharedModule { }
