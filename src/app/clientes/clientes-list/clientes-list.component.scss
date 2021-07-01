@@ -1,3 +1,12 @@
+.container {
+  display: block;
+  margin: 20px 40px;
+  h1 {
+    margin: 20px !important;
+    padding: 20px;
+  }
+}
+
 table {
   border: 1px solid grey;
   border-collapse: collapse;

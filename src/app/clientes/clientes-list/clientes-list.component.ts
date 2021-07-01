@@ -15,8 +15,7 @@ export class ClientesListComponent implements OnInit {
 
   clientes: ClienteListItem[] = [];
 
-  displayedColumns: string[] = ['nombre', 'dni', 'telefono', 'estadoCivilDesc', 'actions'];
-  
+  displayedColumns: string[] = ['pos', 'nombre', 'dni', 'telefono', 'estadoCivilDesc', 'actions'];
   dataSource = new MatTableDataSource<ClienteListItem>([]);
 
   constructor(private clientesModel: ClientesModelService, private router: Router, private alertService: AlertService) { }
@@ -25,6 +24,8 @@ export class ClientesListComponent implements OnInit {
     this.clientesModel.getAll().subscribe(clientes => {
       console.log(clientes);
       this.dataSource.data = [...clientes];
+      // Lo necesitamos para poder añadir un indice en cada iteración del array
+      // this.dataSource.data = clientes.map((x, idx) => ({ ...x, pos: idx + 1 }));
     })
   }
 

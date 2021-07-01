@@ -26,7 +26,8 @@ const routes: Routes = [
     path: 'clientes',
     loadChildren: () => import('./clientes/clientes.module').then(m => m.ClientesModule),
     canActivate: [AuthGuard]
-  }
+  },
+  { path: 'admin', loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule) }
 ];
 
 @NgModule({
