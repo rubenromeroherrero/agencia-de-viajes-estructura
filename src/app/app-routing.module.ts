@@ -27,7 +27,14 @@ const routes: Routes = [
     loadChildren: () => import('./clientes/clientes.module').then(m => m.ClientesModule),
     canActivate: [AuthGuard]
   },
-  { path: 'admin', loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule) }
+  {
+    path: 'admin',
+    canActivate: [AuthGuard],
+    data: {
+      requiredRole: 'admin',
+    },
+    loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule)
+  }
 ];
 
 @NgModule({

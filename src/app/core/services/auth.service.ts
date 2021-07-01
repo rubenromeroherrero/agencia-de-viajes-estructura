@@ -5,7 +5,7 @@ import { Usuario } from '../../models/Usuario';
   providedIn: 'root'
 })
   
-  
+// GESTIONA LA SEGURIDAD
 // SERVICIO QUE GUARDA UN USUARIO EN EL LOCAL STORAGE
 export class AuthService {
   
@@ -32,6 +32,18 @@ export class AuthService {
     }
 
     return '';
+  }
+
+  get user(): Usuario | null {
+    const b = localStorage.getItem(this.APP_USER);
+
+    return b ? new Usuario(JSON.parse(b)) : null;
+  }
+
+  // comprobar el rol de usuario
+  hasUserRole(role: string): boolean {
+    console.log(this.user);
+    return this.user ? this.user.rol === role : false;
   }
 
   storeUser(usuario: Usuario) {

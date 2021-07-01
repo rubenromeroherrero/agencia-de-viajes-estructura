@@ -15,9 +15,17 @@ export class AuthGuard implements CanActivate {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
 
+    // checkear si es usuario o no para poder acceder a la pagina de admin
+    // el requiredRole lo establecemos en el app-routing.module
+    const roleRequired = route.data.requiredRole;
+    // console.log(roleRequired);
+    
     // si hay un true, es decir usuario en el localStorage, le permitimos acceder a las rutas
     if (this.authService.isUserAuthenticated) {
-      return true;
+
+      // si se requiere un rol, comprobamos el rol, y si no se require rol, se da true
+      return roleRequired ? this.authService.hasUserRole(roleRequired) : true;
+
    }
 
     // en caso de que no sea correcto, volvemos a redirigir a la página de login
