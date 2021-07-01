@@ -2,6 +2,56 @@
     <h1>
         Listado de Clientes
     </h1>
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+        <ng-container matColumnDef="nombre">
+            <th mat-header-cell *matHeaderCellDef> Nombre</th>
+            <td mat-cell *matCellDef="let element"> {{element.nombre}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="dni">
+            <th mat-header-cell *matHeaderCellDef> Dni</th>
+            <td mat-cell *matCellDef="let element"> {{element.dni}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="telefono">
+            <th mat-header-cell *matHeaderCellDef> Teléfono</th>
+            <td mat-cell *matCellDef="let element"> {{element.telefono}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="estadoCivilDesc">
+            <th mat-header-cell *matHeaderCellDef> Estado Civil</th>
+            <td mat-cell *matCellDef="let element"> {{element.estadoCivilDesc}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="actions">
+            <th mat-header-cell *matHeaderCellDef> Opciones</th>
+            <td mat-cell *matCellDef="let element">
+                <button mat-icon-button>
+                    <mat-icon color="warn" (click)="borrarClick(element.id)">
+                        delete
+                    </mat-icon>
+                </button>
+                <button mat-icon-button>
+                    <mat-icon color="primary" (click)="editarClick(element.id)">
+                        edit
+                    </mat-icon>
+                </button>
+            </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+
+
+</div>
+
+
+<!-- <div class="container">
+    <h1>
+        Listado de Clientes
+    </h1>
     <table>
         <thead>
             <th>Nombre</th>
@@ -16,7 +66,6 @@
                 <td>{{cliente.dni}}</td>
                 <td>{{cliente.telefono}}</td>
                 <td>{{cliente.estadoCivilDesc}}</td>
-                <!-- El pipe es para transformar la información estática del servicio en html TRANSFORMADOR, necesita los valores precargados -->
                 <td>
                     <i class="fa fa-trash in-red" title="Eliminar Cliente" (click)="borrarClick(cliente.id)"></i>
                     <i class="far fa-edit" title="Editar Cliente" (click)="editarClick(cliente.id)"></i>
@@ -24,4 +73,4 @@
             </tr>
         </ng-container>
     </table>
-</div>
+</div> -->

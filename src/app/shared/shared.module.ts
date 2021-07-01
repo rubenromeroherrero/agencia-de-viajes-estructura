@@ -13,10 +13,18 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MatTableModule } from '@angular/material/table';
 import { MatIconModule } from '@angular/material/icon';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { ConfirmationModalComponent } from './confirmation-modal/confirmation-modal.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { ConfirmationService } from './confirmation-modal/confirmation.service';
+import { AlertModalComponent } from './alert-modal/alert-modal.component';
+import { AlertService } from './alert-modal/alert.service';
 
 
 @NgModule({
-  declarations: [],
+  declarations: [
+    ConfirmationModalComponent,
+    AlertModalComponent
+  ],
   imports: [
     CommonModule,
     ReactiveFormsModule,
@@ -30,7 +38,8 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     MatNativeDateModule,
     MatDatepickerModule,
     MatTableModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatDialogModule
   ], exports: [
     CommonModule,
     ReactiveFormsModule,
@@ -44,7 +53,13 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     MatNativeDateModule,
     MatDatepickerModule,
     MatTableModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatDialogModule
+  ],
+  providers: [
+    // Definir el elemento de servicio, para poder hacerlo disponible a nivel global
+    ConfirmationService,
+    AlertService
   ]
 })
 export class SharedModule { }

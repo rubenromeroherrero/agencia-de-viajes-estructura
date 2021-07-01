@@ -1,8 +1,9 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { ConfirmationService } from 'src/app/shared/confirmation-modal/confirmation.service';
+import { IdValor } from '../../models/id-valor';
 import { Viaje } from '../models/viaje';
 import { ViajesFilter } from '../models/viajes-filter';
-import { IdValor } from '../../models/id-valor';
 import { ViajesModelService } from '../services/viajes-model.service';
 
 @Component({
@@ -17,7 +18,8 @@ export class ViajesListComponent implements OnInit {
 
   mostrarTarjetas = false;
 
-  constructor(private viajesModel: ViajesModelService, private router: Router) { }
+  // dialog -> permite levantar ventanas modales de confirmación
+  constructor(private viajesModel: ViajesModelService, private router: Router, private confirmationService: ConfirmationService) { }
 
   ngOnInit(): void {
     this.viajesModel.getViajes().subscribe(result => {
@@ -39,11 +41,23 @@ export class ViajesListComponent implements OnInit {
   }
 
   borrarClick(id: string): void {
-    if (id && confirm('Está seguro de querer eliminar el viaje ?')) {
-      this.viajesModel.eliminar(id).subscribe(result => {
-        this.viajesModel.getViajes().subscribe(result => {
-          this.viajes = result;
-        });
+    if (id) {
+      this.confirmationService.confirmar(
+        {
+        titulo: 'Eliminar viaje',
+        pregunta: '¿Seguro que quieres eliminar el viaje?',
+        opcionSi: 'Eliminar',
+        opcionNo: 'Cancelar'
+        }
+      ).subscribe(x => {
+        // si es true
+        if (x) {
+          this.viajesModel.eliminar(id).subscribe(result => {
+            this.viajesModel.getViajes().subscribe(result => {
+            this.viajes = result;
+            });
+          })
+        }
       })
     }
   }

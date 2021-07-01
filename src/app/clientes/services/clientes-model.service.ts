@@ -71,9 +71,9 @@ export class ClientesModelService {
       );
   }
 
-  delete(clienteId: string): Observable<boolean> {
+  delete(clienteId: string): Observable<boolean | null> {
     return clienteId
-      ? this.http.delete<HttpResponse<any>>(`${this.url}/clientes/${clienteId}`).pipe(
+      ? this.http.delete<HttpResponse<any>>(`${this.url}/clientes/${clienteId}`, {observe: 'response'}).pipe(
         map(res => res.status === HttpStatusCode.NoContent)
       )
       : of(false)

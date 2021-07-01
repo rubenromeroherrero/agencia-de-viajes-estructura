@@ -32,4 +32,21 @@ export class LoginService {
       })
     );  
   }
+
+
+  // devolvemos un objeto que sea traiga un nuevo token, con la fecha de expiración
+  // refreshToken(refresh: any): Observable<any> {
+  //   return this.http.post<Usuario>(this.url, {refresh}, { observe: 'response' }).pipe(
+  //     map(u => {
+  //       return new Usuario(u.body)
+  //     }),
+  //     catchError((e: HttpErrorResponse) => {
+  //       if (e.status === HttpStatusCode.InternalServerError){
+  //           console.log('La api ha muerto');          
+  //       }
+  //       console.log(e.message);        
+  //       return of(null);
+  //     })
+  //   );  
+  // }
 }

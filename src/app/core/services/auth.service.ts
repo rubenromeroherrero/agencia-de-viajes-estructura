@@ -44,5 +44,8 @@ export class AuthService {
     localStorage.removeItem(this.APP_USER);
   }
 
+  // initializeRefreshToken(usuario: Usuario) {
+    
+  // }
 
 }

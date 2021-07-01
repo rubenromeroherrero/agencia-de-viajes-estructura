@@ -1,5 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
+import { AlertService } from 'src/app/shared/alert-modal/alert.service';
+import { Cliente } from '../models/cliente';
 import { ClienteListItem } from '../models/cliente-list-item';
 import { ClientesModelService } from '../services/clientes-model.service';
 
@@ -12,20 +15,33 @@ export class ClientesListComponent implements OnInit {
 
   clientes: ClienteListItem[] = [];
 
-  constructor(private clientesModel: ClientesModelService, private router: Router) { }
+  displayedColumns: string[] = ['nombre', 'dni', 'telefono', 'estadoCivilDesc', 'actions'];
+  
+  dataSource = new MatTableDataSource<ClienteListItem>([]);
+
+  constructor(private clientesModel: ClientesModelService, private router: Router, private alertService: AlertService) { }
 
   ngOnInit(): void {
     this.clientesModel.getAll().subscribe(clientes => {
       console.log(clientes);
-      this.clientes = clientes;
+      this.dataSource.data = [...clientes];
     })
   }
 
   borrarClick(id: string): void {
-    if (id && confirm('Está seguro de querer eliminar el viaje?')) {
-      this.clientesModel.delete(id).subscribe(result => {
-        this.clientesModel.getAll().subscribe(result => {
-          this.clientes = result;
+    if (id) {
+      this.alertService.confirmar(
+        {
+          titulo: 'Cliente borrado',
+          confirmacion: 'true',
+        }
+      ).subscribe(x => {
+        this.clientesModel.delete(id).subscribe(result => {
+          if (result) {
+            this.clientesModel.getAll().subscribe(result => {
+            this.dataSource.data = result;
+          })
+          }
         })
       })
     }
