@@ -1,0 +1,14 @@
+.container {
+  position: relative;
+  mat-icon {
+    position: absolute;
+    top: 0;
+    right: 0;
+    cursor: pointer;
+
+    &:hover {
+      background-color: rgba(223, 223, 223, 0.288);
+      border-radius: 4px;
+    }
+  }
+}

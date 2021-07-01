@@ -1,8 +1,7 @@
-import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
-import { AlertService } from 'src/app/shared/alert-modal/alert.service';
-import { Cliente } from '../models/cliente';
+import { ConfirmationService } from 'src/app/shared/modals/confirmation.service';
 import { ClienteListItem } from '../models/cliente-list-item';
 import { ClientesModelService } from '../services/clientes-model.service';
 
@@ -18,7 +17,7 @@ export class ClientesListComponent implements OnInit {
   displayedColumns: string[] = ['pos', 'nombre', 'dni', 'telefono', 'estadoCivilDesc', 'actions'];
   dataSource = new MatTableDataSource<ClienteListItem>([]);
 
-  constructor(private clientesModel: ClientesModelService, private router: Router, private alertService: AlertService) { }
+  constructor(private clientesModel: ClientesModelService, private router: Router, private confirmationService: ConfirmationService) { }
 
   ngOnInit(): void {
     this.clientesModel.getAll().subscribe(clientes => {
@@ -31,9 +30,9 @@ export class ClientesListComponent implements OnInit {
 
   borrarClick(id: string): void {
     if (id) {
-      this.alertService.confirmar(
+      this.confirmationService.informar(
         {
-          titulo: 'Cliente borrado',
+          titulo: 'Eliminar viaje',
           confirmacion: 'true',
         }
       ).subscribe(x => {

@@ -19,8 +19,6 @@
     <div mat-dialog-actions>
         <button mat-raised-button mat-dialog-close color="primary">{{data?.opcionNo || 'No'}}</button>
         <button mat-raised-button [mat-dialog-close]="true" color="accent">{{data?.opcionSi || 'Sí'}}</button>
-        <button mat-raised-button [mat-dialog-close]="false" color="accent" class="botonCerrar">
-            <mat-icon aria-hidden="false" aria-label="Example home icon">close</mat-icon>
-        </button>
+        <mat-icon aria-hidden="false" mat-dialog-close aria-label="Example home icon">close</mat-icon>
     </div>
 </div>
